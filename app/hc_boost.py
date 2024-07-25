@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from hc_tap import send_request, clicker_tap
+from hc_tap import send_request, clicker_tap_request
 from settings import HEADERS, BOOSTS_FOR_BUY_URL, BUY_BOOSTS_URL
 
 
@@ -21,9 +21,10 @@ def get_cooldown_seconds_boost_full_available_taps():
 
 
 def get_available_taps():
-    tap_response = clicker_tap(1, 4500)
+    tap_response = clicker_tap_request(1, 6000)
     if tap_response:
         available_taps = tap_response["clickerUser"]["availableTaps"]
+
         return available_taps
     else:
         return 0
@@ -38,7 +39,7 @@ def boost_full_available_taps(do_boost: bool = False):
             print("Do Boost")
             available_taps = get_available_taps()
 
-            drop_all_available_taps = clicker_tap(available_taps, 4500)
+            drop_all_available_taps = clicker_tap_request(available_taps, 4500)
             check_drop = drop_all_available_taps["clickerUser"]["availableTaps"]
             print(f"Drop all available taps: {available_taps} -> {check_drop}")
 
@@ -46,7 +47,7 @@ def boost_full_available_taps(do_boost: bool = False):
             buy_boosts = send_request(BUY_BOOSTS_URL, HEADERS, data)
 
             available_taps = get_available_taps()
-            drop_all_available_taps = clicker_tap(available_taps, 4500)
+            drop_all_available_taps = clicker_tap_request(available_taps, 4500)
             check_drop = drop_all_available_taps["clickerUser"]["availableTaps"]
             print(f"Drop all boosted taps: {available_taps} -> {check_drop}")
 

@@ -25,18 +25,18 @@ def main():
             # sleep_time_sec = random.randint(1300, 1500) # TODO
             current_timestamp = datetime.now()
 
-            response_clicker_tap = clicker_tap(tap_count, available_taps)
+            statistic = clicker_tap(tap_count, available_taps)
 
-            if response_clicker_tap is not None:
-                statistic = get_statistic(response_clicker_tap)
 
-                summary_tap_coins += tap_count
-                summary_passive_coins += statistic.get('last_passive_earn')
+            # statistic = get_statistic(response_clicker_tap)
 
-                print_statistic(current_timestamp, tap_count, available_taps, statistic)
+            summary_tap_coins += tap_count
+            # summary_passive_coins += statistic.get('last_passive_earn')
 
-                upgrade(statistic.get('balance_coins'), upgrade_skill)
-                boost_full_available_taps(do_boost_full_available_taps)
+            # print_statistic(current_timestamp, tap_count, available_taps, statistic)
+
+            upgrade(statistic.get('balance_coins'), top_limit=30, is_upgrade=upgrade_skill)
+            boost_full_available_taps(do_boost_full_available_taps)
 
             time.sleep(sleep_time_sec)
 

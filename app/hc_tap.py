@@ -1,21 +1,19 @@
-import requests
 from typing import Dict
 from datetime import datetime
 
+from request_default import send_request
 from settings import HEADERS, CLICKER_TAP_URL
 
 
-def send_request(url: str, headers: Dict, payload: dict = None) -> Dict | None:
-    try:
-        response = requests.post(url, headers=headers, json=payload)
-        if response.status_code != 200:
-            print(f"Error from send_request: {response.status_code}, {response.text}")
-            return None
-        else:
-            return response.json()
-    except Exception as e:
-        print(f"Error from send_request: {e}")
-        return None
+def clicker_tap_request(count, taps):
+    payload = {
+        "count": count,
+        "availableTaps": taps - count,
+        "timestamp": datetime.now().timestamp()
+    }
+    response_tap = send_request(CLICKER_TAP_URL, HEADERS, payload)
+
+    return response_tap
 
 
 def get_statistic(data: Dict) -> Dict:
@@ -34,18 +32,6 @@ def get_statistic(data: Dict) -> Dict:
     return result
 
 
-def clicker_tap(count, taps):
-    payload_clicker_tap = {
-        "count": count,
-        "availableTaps": taps - count,
-        "timestamp": datetime.now().timestamp()
-    }
-
-    response_tap = send_request(CLICKER_TAP_URL, HEADERS, payload_clicker_tap)
-
-    return response_tap
-
-
 def print_statistic(current_timestamp, tap_count, available_taps, statistic):
     print(f"{current_timestamp}] "
           f"send: {tap_count}/{available_taps} | "
@@ -60,10 +46,12 @@ def print_statistic(current_timestamp, tap_count, available_taps, statistic):
           )
 
 
-# current_timestamp = datetime.now()
-# tap_count = 1
-# available_taps = 4500
-# response_clicker_tap = clicker_tap(tap_count, available_taps)
-# if response_clicker_tap is not None:
-#     statistic = get_statistic(response_clicker_tap)
-#     print_statistic(current_timestamp, tap_count, available_taps, statistic)
+def clicker_tap(tap_count: int, available_taps: int):
+    current_timestamp = datetime.now()
+    response_clicker_tap = clicker_tap_request(tap_count, available_taps)
+    if response_clicker_tap is not None:
+        statistic = get_statistic(response_clicker_tap)
+        print_statistic(current_timestamp, tap_count, available_taps, statistic)
+        return statistic
+
+# clicker_tap(tap_count=1, available_taps=6000)
