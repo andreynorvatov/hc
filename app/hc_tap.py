@@ -63,7 +63,7 @@ def print_statistic(current_timestamp, tap_count, available_taps, statistic):
 # current_timestamp = datetime.now()
 # tap_count = 1
 # available_taps = 4500
-# response_clicker_tap = clicker_tap(tap_count, available_taps, current_timestamp)
+# response_clicker_tap = clicker_tap(tap_count, available_taps)
 # if response_clicker_tap is not None:
 #     statistic = get_statistic(response_clicker_tap)
 #     print_statistic(current_timestamp, tap_count, available_taps, statistic)
