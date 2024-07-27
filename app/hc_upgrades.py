@@ -156,7 +156,7 @@ def by_best_upgrade_v2(price_limit: int = 1, upgrades_at_time_limit: int = 1):
                 return price_limit
 
         except Exception as e:
-            logger.error(f"[HC Upgrade] Error buying upgrade for ID: {current_upgrade['id']}: {e}")
+            logger.error(f"[HC Upgrade] Error buying upgrade for ID: {current_upgrade['id']}, Price: {current_upgrade['price']}/{price_limit}: {e}")
 
     logger.info(f"[HC Upgrade] Upgrade NOT success! No coins on balance: {price_limit}.")
     return price_limit
