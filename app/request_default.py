@@ -5,6 +5,7 @@ from logger import logging
 
 logger = logging.getLogger(__name__)
 
+
 def send_request(url: str, headers: Dict, payload: dict = None) -> Dict | None:
     try:
         response = requests.post(url, headers=headers, json=payload)
@@ -16,5 +17,3 @@ def send_request(url: str, headers: Dict, payload: dict = None) -> Dict | None:
     except Exception as e:
         logger.error(f'[SendRequest] Error send request: {e}.')
         return None
-
-

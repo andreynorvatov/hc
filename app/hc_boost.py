@@ -13,9 +13,6 @@ def get_cooldown_seconds_boost_full_available_taps():
 
     if check_boost_response:
         boosts_for_buy_response = [i for i in check_boost_response["boostsForBuy"] if i["id"] == "BoostFullAvailableTaps"][0]
-        # print(boost_full_available_taps)
-        id = boosts_for_buy_response["id"]
-        max_level = boosts_for_buy_response["maxLevel"]
         cooldown_seconds = boosts_for_buy_response["cooldownSeconds"]
 
         return int(cooldown_seconds) if cooldown_seconds != 0 else 0
@@ -46,9 +43,9 @@ def boost_full_available_taps(do_boost: bool = False):
                 # print(f"Do Boost. Drop all available taps: {available_taps} -> {check_drop}")
                 logger.info(f"[HC Boost] Do Boost. Drop all available taps: {available_taps} -> {check_drop}")
 
-                data = {"boostId": "BoostFullAvailableTaps", "timestamp": datetime.now().timestamp()}
-                buy_boosts = send_request(BUY_BOOSTS_URL, HEADERS, data)
-
+            data = {"boostId": "BoostFullAvailableTaps", "timestamp": datetime.now().timestamp()}
+            buy_boosts = send_request(BUY_BOOSTS_URL, HEADERS, data)
+            if buy_boosts:
                 available_taps = get_available_taps()
                 drop_all_available_taps = clicker_tap_request(available_taps, 4500)
                 check_drop = drop_all_available_taps["clickerUser"]["availableTaps"]
