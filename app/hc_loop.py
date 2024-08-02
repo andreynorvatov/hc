@@ -20,7 +20,7 @@ from logger import logging
 def main():
     time_start = datetime.now()
     try:
-        available_taps = 6500  # TODO to env
+        available_taps = 7000  # TODO to env
         start_response = clicker_tap(tap_count=1, available_taps=available_taps)
 
         balance_coins = start_response["balance_coins"] if start_response else 1

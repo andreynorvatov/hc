@@ -131,6 +131,7 @@ def by_best_upgrade_v2(price_limit: int = 1, upgrades_at_time_limit: int = 1):
         return price_limit
 
     upgrades_top = get_upgrades_top(upgrades_data, drop_null_and_below=True)
+    # write_stat_csv_in_file("statistic/upgrades_for_buy.csv", data=upgrades_top, suffix=str(datetime.now().timestamp()))
     if not upgrades_top:
         logger.error("[HC Upgrade] No eligible upgrades found.")
         return price_limit
@@ -167,4 +168,4 @@ def by_upgrade_in_loop(balance_limit: int, loop_limit: int = 300):
 
 
 # by_upgrade_in_loop(14908)
-# by_best_upgrade_v2(price_limit=30000)
+by_best_upgrade_v2(price_limit=10_000_000)

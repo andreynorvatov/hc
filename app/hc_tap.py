@@ -13,7 +13,7 @@ def clicker_tap_request(count, taps):
     payload = {
         "count": count,
         "availableTaps": taps - count,
-        "timestamp": datetime.now().timestamp()
+        "timestamp": int(datetime.now().timestamp())
     }
     response_tap = send_request(CLICKER_TAP_URL, HEADERS, payload)
 
