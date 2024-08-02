@@ -81,7 +81,7 @@ def get_upgrades_top(data: Dict, drop_null_and_below: bool = False):
 def buy_upgrade_request(upgrade_id: str):
     payload = {
         "upgradeId": upgrade_id,
-        "timestamp": datetime.now().timestamp()
+        "timestamp": int(datetime.now().timestamp())
     }
     response_tap = send_request(BUY_UPGRADE_URL, headers=HEADERS, payload=payload)
     if response_tap:
