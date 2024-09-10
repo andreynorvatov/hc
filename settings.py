@@ -20,7 +20,32 @@ UPGRADES_FOR_BUY_URL = "https://api.hamsterkombatgame.io/clicker/upgrades-for-bu
 BUY_UPGRADE_URL = "https://api.hamsterkombatgame.io/clicker/buy-upgrade"
 
 ALL_CONDITION_TYPE = ['ByUpgrade', 'MoreReferralsCount', 'ReferralCount', 'SubscribeTelegramChannel', 'LinkWithoutCheck', 'LinksToUpgradeLevel']
-BAD_CONDITION_TYPE = ['MoreReferralsCount', 'ReferralCount', 'SubscribeTelegramChannel', 'LinkWithoutCheck', 'LinksToUpgradeLevel']
+BAD_CONDITION_TYPE = [
+    'MoreReferralsCount',
+      'ReferralCount',
+      # 'SubscribeTelegramChannel',
+      # 'LinkWithoutCheck',
+      # 'LinksToUpgradeLevel'
+      ]
 
 BOOSTS_FOR_BUY_URL = "https://api.hamsterkombatgame.io/clicker/boosts-for-buy"
 BUY_BOOSTS_URL = "https://api.hamsterkombatgame.io/clicker/buy-boost"
+
+'''
+echo -n 'a - - c c -.a b b b d e.0 0 g - d e.- - g f f e.z z g h x x.s s s h - -' | base64
+
+https://api.hamsterkombatgame.io/clicker/start-keys-minigame
+03 2907 88 27|410755605
+03 -?
+2907 - 29 July
+88 - ?
+27 - 46.0.160.27
+
+window.btoa(s.cipher + "|" + Ke().account_id),
+https://api.hamsterkombatgame.io/clicker/claim-daily-keys-minigame
+{cipher: "MDMyOTA3ODgyN3w0MTA3NTU2MDU="}
+
+
+
+https://api.hamsterkombatgame.io/clicker/config
+'''
